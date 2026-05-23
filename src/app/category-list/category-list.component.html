@@ -1,0 +1,192 @@
+<div class="container py-5">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+            <h2 class="fw-bold mb-1 text-dark">
+                <i class="bi bi-grid-fill text-primary me-2"></i>
+                Categorías
+            </h2>
+
+            <p class="text-muted mb-0">
+                Gestiona las categorías disponibles del sistema.
+            </p>
+        </div>
+
+        <button class="btn btn-primary shadow-sm px-4" routerLink="new">
+            <i class="bi bi-plus-circle me-2"></i>
+            Nueva Categoría
+        </button>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+        <!-- TOP BAR -->
+        <div class="card-header bg-white border-0 py-3 px-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+                <div>
+                    <h5 class="fw-semibold mb-0 text-dark">
+                        Lista de Categorías
+                    </h5>
+                </div>
+
+                <div class="position-relative">
+                    <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+
+                    <input
+                        type="text"
+                        class="form-control ps-5 rounded-3"
+                        placeholder="Buscar categoría..."
+                        style="width: 260px;"
+                    >
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-responsive">
+
+            <table class="table align-middle table-hover mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th class="py-3 px-4 fw-semibold text-secondary">
+                            ID
+                        </th>
+
+                        <th class="py-3 fw-semibold text-secondary">
+                            Nombre
+                        </th>
+
+                        <th class="py-3 fw-semibold text-secondary">
+                            Descripción
+                        </th>
+
+                        <th class="py-3 text-center fw-semibold text-secondary">
+                            Operaciones
+                        </th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @for(category of categoriesList; track category.id){
+
+                        <tr class="border-top">
+
+                            <td class="px-4 fw-semibold text-dark">
+                                {{category.id}}
+                            </td>
+
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+
+                                    <div
+                                        class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center"
+                                        style="width: 45px; height: 45px;"
+                                    >
+                                        <i class="bi bi-tag-fill"></i>
+                                    </div>
+
+                                    <div>
+                                        <div class="fw-semibold text-dark">
+                                            {{category.nombre}}
+                                        </div>
+
+                                        <small class="text-muted">
+                                            Categoría activa
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td class="text-muted" style="max-width: 350px;">
+                                {{category.descripcion}}
+                            </td>
+
+                            <td>
+
+                                <div class="d-flex justify-content-center gap-2">
+
+                                    <button
+                                        class="btn btn-sm btn-outline-primary rounded-pill px-3"
+                                        [routerLink]="[category.id, 'edit']"
+                                    >
+                                        <i class="bi bi-pencil-square me-1"></i>
+                                        Editar
+                                    </button>
+
+                                    <button
+                                        class="btn btn-sm btn-outline-danger rounded-pill px-3"
+                                        (click)="deleteCategory(category)"
+                                    >
+                                        <i class="bi bi-trash3 me-1"></i>
+                                        Eliminar
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="card-footer bg-white border-0 py-3 px-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                <small class="text-muted">
+                    Mostrando {{categoriesList.length}} categorías
+                </small>
+
+                <nav>
+                    <ul class="pagination pagination-sm mb-0">
+
+                        <li class="page-item disabled">
+                            <a class="page-link rounded-start-pill">
+                                Anterior
+                            </a>
+                        </li>
+
+                        <li class="page-item active">
+                            <a class="page-link">1</a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link">2</a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link rounded-end-pill">
+                                Siguiente
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
