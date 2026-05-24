@@ -12,6 +12,14 @@ export const routes: Routes = [
     {
         path: ':id/edit',
         loadComponent: () => import('./category-form/category-form.component')
+    },
+    {
+        path: 'vacantes',
+        loadComponent: () => import('./vacancy-list/vacancy-list.component')
+    },
+    {
+        path: 'new-vacancy',
+        loadComponent: () => import('./vacancy-form/vacancy-form.component')
     }
-    
+
 ];

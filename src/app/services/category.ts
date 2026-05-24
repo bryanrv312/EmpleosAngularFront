@@ -18,7 +18,7 @@ export class CategoryService {
     return this.http.get<Category>(`http://localhost:8080/api/categorias/${id}`);
   }
 
-  create(category: any){
+  create(category: Category){
     return this.http.post<Category>('http://localhost:8080/api/categorias', category);
   }
 
