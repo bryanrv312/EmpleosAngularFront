@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-vacancy-list',
   standalone: true,//
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './vacancy-list.component.html',
   styleUrl: './vacancy-list.component.css'
 })
