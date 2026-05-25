@@ -36,229 +36,167 @@
         <!-- CARD BODY -->
         <div class="card-body p-4">
 
-            <form>
-
-                <div class="row g-4">
-
-                    <!-- NOMBRE -->
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Nombre de la Vacante
-                        </label>
-
-                        <div class="input-group">
-
-                            <span class="input-group-text bg-light border-0">
-                                <i class="bi bi-briefcase-fill text-primary"></i>
-                            </span>
-
-                            <input
-                                type="text"
-                                class="form-control border-0 bg-light py-3"
-                                placeholder="Ingrese el nombre de la vacante"
-                            >
-
+            @if(formGroup) {
+                <form [formGroup]="formGroup" enctype="multipart/form-data" (ngSubmit)="save()">
+                
+                    <div class="row g-4">
+                
+                        <!-- NOMBRE -->
+                        <div class="col-md-6">
+                
+                            <label class="form-label fw-semibold text-dark">
+                                Nombre de la Vacante
+                            </label>
+                
+                            <div class="input-group">
+                
+                                <span class="input-group-text bg-light border-0">
+                                    <i class="bi bi-briefcase-fill text-primary"></i>
+                                </span>
+                
+                                <input formControlName="nombre" id="nombre" type="text" class="form-control border-0 bg-light py-3"
+                                    placeholder="Ingrese el nombre de la vacante">
+                
+                            </div>
+                
                         </div>
-
-                    </div>
-
-                    <!-- SALARIO -->
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Salario
-                        </label>
-
-                        <div class="input-group">
-
-                            <span class="input-group-text bg-light border-0">
-                                <i class="bi bi-cash-stack text-success"></i>
-                            </span>
-
-                            <input
-                                type="number"
-                                class="form-control border-0 bg-light py-3"
-                                placeholder="Ingrese el salario"
-                            >
-
+                
+                        <!-- SALARIO -->
+                        <div class="col-md-6">
+                
+                            <label class="form-label fw-semibold text-dark">
+                                Salario
+                            </label>
+                
+                            <div class="input-group">
+                
+                                <span class="input-group-text bg-light border-0">
+                                    <i class="bi bi-cash-stack text-success"></i>
+                                </span>
+                
+                                <input type="number" class="form-control border-0 bg-light py-3" placeholder="Ingrese el salario" id="salario" formControlName="salario">
+                
+                            </div>
+                
                         </div>
-
-                    </div>
-
-                    <!-- FECHA -->
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Fecha de Publicación
-                        </label>
-
-                        <input
-                            type="date"
-                            class="form-control border-0 bg-light py-3"
-                        >
-
-                    </div>
-
-                    <!-- CATEGORÍA -->
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Categoría
-                        </label>
-
-                        <select class="form-select border-0 bg-light py-3">
-
-                            <option selected>
-                                Seleccione una categoría
-                            </option>
-
-                            <option>
-                                Computación / TI
-                            </option>
-
-                            <option>
-                                Administración
-                            </option>
-
-                            <option>
-                                Marketing
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <!-- ESTATUS -->
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Estado
-                        </label>
-
-                        <select class="form-select border-0 bg-light py-3">
-
-                            <option selected>
-                                Seleccione un estado
-                            </option>
-
-                            <option>
-                                Aprobada
-                            </option>
-
-                            <option>
-                                Pendiente
-                            </option>
-
-                            <option>
-                                Cancelada
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <!-- DESTACADO -->
-                    <div class="col-md-6">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Destacado
-                        </label>
-
-                        <select class="form-select border-0 bg-light py-3">
-
-                            <option selected>
-                                Seleccione una opción
-                            </option>
-
-                            <option>
-                                Sí
-                            </option>
-
-                            <option>
-                                No
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <!-- IMAGEN -->
-                    <div class="col-12">
-
-                        <label class="form-label fw-semibold text-dark">
-                            URL de Imagen
-                        </label>
-
-                        <div class="input-group">
-
-                            <span class="input-group-text bg-light border-0">
-                                <i class="bi bi-image-fill text-primary"></i>
-                            </span>
-
-                            <input
-                                type="text"
-                                class="form-control border-0 bg-light py-3"
-                                placeholder="Ingrese la URL de la imagen"
-                            >
-
+                
+                        <!-- FECHA -->
+                        <div class="col-md-6">
+                
+                            <label class="form-label fw-semibold text-dark">
+                                Fecha de Publicación
+                            </label>
+                
+                            <input id="fecha" formControlName="fecha" type="date" class="form-control border-0 bg-light py-3">
+                
                         </div>
-
+                
+                        <!-- CATEGORÍA -->
+                        <div formGroupName="categoria" class="col-md-6">
+                            <label class="form-label fw-semibold text-dark">
+                                Categoría
+                            </label>
+                            <select class="form-select border-0 bg-light py-3" formControlName="id">
+                                <option value="">
+                                    Seleccione una categoría
+                                </option>
+                                @for (category of categoriesList; track category.id) {
+                                    <option [value]="category.id">
+                                        {{category.nombre}}
+                                    </option> 
+                                }    
+                            </select>
+                        </div>
+                
+                        <!-- ESTATUS -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold text-dark">
+                                Estado
+                            </label>
+                            <select class="form-select border-0 bg-light py-3" formControlName="estatus">
+                                <option value="">
+                                    Seleccione un estado
+                                </option>
+                                <option value="creada">
+                                    Creada
+                                </option>
+                                <option value="aprobada">
+                                    Aprobada
+                                </option>
+                                <option value="eliminada">
+                                    Eliminada
+                                </option>
+                            </select>
+                        </div>
+                
+                        <!-- RADIO BUTTON DESTACADO -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold text-dark d-block mb-3">
+                                Destacado
+                            </label>
+                            <div class="d-flex gap-4">
+                                <!-- DESTACADO -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" formControlName="destacado" id="destacado1" value="1" name="destacado">
+                                    <label class="form-check-label" for="destacado1">
+                                        Destacado
+                                    </label>
+                                </div>
+                                <!-- NO DESTACADO -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" formControlName="destacado" id="destacado0" value="0" name="destacado">
+                                    <label class="form-check-label" for="destacado0">
+                                        No Destacado
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- IMAGEN -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold text-dark">
+                                Imagen
+                            </label>
+                            <input formControlName="imagen" type="file" class="form-control bg-light border-0 py-3" (change)="onFileSelected($event)">
+                        </div>
+                
+                        <!-- DESCRIPCIÓN -->
+                        <div class="col-12">
+                            <label for="descripcion" class="form-label fw-semibold text-dark">
+                                Descripción
+                            </label>
+                            <textarea id="descripcion" class="form-control border-0 bg-light" rows="4" formControlName="descripcion"
+                                placeholder="Ingrese una descripción breve de la vacante">
+                            </textarea>
+                        </div>
+                
+                        <!-- DETALLES -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold text-dark">
+                                Detalles
+                            </label>
+                            <textarea class="form-control border-0 bg-light" rows="8" formControlName="detalles"
+                                placeholder="Ingrese los detalles completos de la vacante"></textarea>
+                        </div>
                     </div>
-
-                    <!-- DESCRIPCIÓN -->
-                    <div class="col-12">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Descripción
-                        </label>
-
-                        <textarea
-                            class="form-control border-0 bg-light"
-                            rows="4"
-                            placeholder="Ingrese una descripción breve de la vacante"
-                        ></textarea>
-
+                
+                    <!-- ACTIONS -->
+                    <div class="d-flex justify-content-end gap-3 mt-5 flex-wrap">
+                
+                        <button type="button" class="btn btn-light border rounded-pill px-4 py-2">
+                            Cancelar
+                        </button>
+                
+                        <button type="submit" class="btn btn-primary rounded-pill px-5 py-2 shadow-sm">
+                            <i class="bi bi-check-circle me-2"></i>
+                            Guardar Vacante
+                        </button>
+                
                     </div>
-
-                    <!-- DETALLES -->
-                    <div class="col-12">
-
-                        <label class="form-label fw-semibold text-dark">
-                            Detalles
-                        </label>
-
-                        <textarea
-                            class="form-control border-0 bg-light"
-                            rows="8"
-                            placeholder="Ingrese los detalles completos de la vacante"
-                        ></textarea>
-
-                    </div>
-
-                </div>
-
-                <!-- ACTIONS -->
-                <div class="d-flex justify-content-end gap-3 mt-5 flex-wrap">
-
-                    <button
-                        type="button"
-                        class="btn btn-light border rounded-pill px-4 py-2"
-                    >
-                        Cancelar
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="btn btn-primary rounded-pill px-5 py-2 shadow-sm"
-                    >
-                        <i class="bi bi-check-circle me-2"></i>
-                        Guardar Vacante
-                    </button>
-
-                </div>
-
-            </form>
+                
+                </form>
+            }
+            
 
         </div>
 

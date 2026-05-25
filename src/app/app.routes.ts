@@ -18,7 +18,7 @@ export const routes: Routes = [
         loadComponent: () => import('./vacancy-list/vacancy-list.component')
     },
     {
-        path: 'new-vacancy',
+        path: 'newVacancy',
         loadComponent: () => import('./vacancy-form/vacancy-form.component')
     }
 

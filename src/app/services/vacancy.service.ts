@@ -19,8 +19,13 @@ export class VacancyService {
     return this.http.get<Vacancy>(`http://localhost:8080/api/vacantes/${id}`);
   }
 
-  create(vacancy: Vacancy){
-    return this.http.post<Vacancy>('http://localhost:8080/api/vacantes', vacancy);
+  // create(vacancy: Vacancy){
+  //   return this.http.post<Vacancy>('http://localhost:8080/api/vacantes', vacancy);
+  // }
+
+  //todos los campos ahora van serializados dentro de un FormData, porque ahora el formulario tiene un campo para subir archivos, entonces no podemos enviar un objeto JSON, sino que tenemos que enviar un FormData, que es un objeto que nos permite enviar datos en formato multipart/form-data, que es el formato que se utiliza para enviar archivos a través de HTTP
+  create(formData: FormData){
+    return this.http.post<Vacancy>('http://localhost:8080/api/vacantes', formData);
   }
 
 
