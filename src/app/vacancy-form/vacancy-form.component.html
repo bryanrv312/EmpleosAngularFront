@@ -6,15 +6,15 @@
         <div>
             <h2 class="fw-bold mb-1 text-dark">
                 <i class="bi bi-briefcase-fill text-primary me-2"></i>
-                Nueva Vacante
+                {{ esEdicion ? 'Editar' : 'Crear' }} Vacante
             </h2>
 
             <p class="text-muted mb-0">
-                Completa la información para registrar una nueva vacante.
+                Completa la información para {{ esEdicion ? 'actualizar' : 'registrar' }} una nueva vacante.
             </p>
         </div>
 
-        <button class="btn btn-outline-secondary rounded-pill px-4">
+        <button class="btn btn-outline-secondary rounded-pill px-4" routerLink="/vacantes">
             <i class="bi bi-arrow-left me-2"></i>
             Volver
         </button>
@@ -157,7 +157,13 @@
                             <label class="form-label fw-semibold text-dark">
                                 Imagen
                             </label>
-                            <input formControlName="imagen" type="file" class="form-control bg-light border-0 py-3" (change)="onFileSelected($event)">
+                            @if(imagenActual) {
+                                <div class="mb-3">
+                                    <img [src]="imagenActual" class="img-fluid mb-2 rounded shadow-sm" style="max-height: 200px;" />
+                                </div>
+                            }
+                            <!-- <img [src]="imagenActual" class="img-fluid mb-2 rounded shadow-sm" style="max-height: 200px;" /> -->
+                            <input type="file" class="form-control bg-light border-0 py-3" (change)="onFileSelected($event)">
                         </div>
                 
                         <!-- DESCRIPCIÓN -->
@@ -183,13 +189,14 @@
                     <!-- ACTIONS -->
                     <div class="d-flex justify-content-end gap-3 mt-5 flex-wrap">
                 
-                        <button type="button" class="btn btn-light border rounded-pill px-4 py-2">
+                        <button type="button" class="btn btn-light border rounded-pill px-4 py-2" routerLink="/vacantes">
                             Cancelar
                         </button>
                 
                         <button type="submit" class="btn btn-primary rounded-pill px-5 py-2 shadow-sm">
                             <i class="bi bi-check-circle me-2"></i>
-                            Guardar Vacante
+                            {{ esEdicion ? 'Actualizar' : 'Guardar' }} Vacante
+                            <!-- @if(esEdicion){Actualizar Vacante}@else{Guardar Vacante} -->
                         </button>
                 
                     </div>
