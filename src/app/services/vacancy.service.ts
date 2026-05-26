@@ -28,5 +28,9 @@ export class VacancyService {
     return this.http.post<Vacancy>('http://localhost:8080/api/vacantes', formData);
   }
 
+  update(id: number, formData: FormData){
+    return this.http.put<Vacancy>(`http://localhost:8080/api/vacantes/${id}`, formData);
+  }
+
 
 }

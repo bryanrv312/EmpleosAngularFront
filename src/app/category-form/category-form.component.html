@@ -22,10 +22,7 @@
             </p>
         </div>
 
-        <a
-            routerLink="/"
-            class="btn btn-outline-secondary rounded-pill px-4"
-        >
+        <a routerLink="/" class="btn btn-outline-secondary rounded-pill px-4">
             <i class="bi bi-arrow-left me-2"></i>
             Volver
         </a>
@@ -34,23 +31,16 @@
 
     <!-- FORM CARD -->
     <div class="row justify-content-center">
-
         <div class="col-lg-7 col-xl-6">
-
             <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-
                 <!-- CARD HEADER -->
                 <div class="card-header bg-white border-0 py-4 px-4">
-
                     <div class="d-flex align-items-center gap-3">
-
-                        <div
-                            class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center"
-                            style="width: 60px; height: 60px;"
-                        >
+                        <div class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center"
+                            style="width: 60px; height: 60px;">
                             <i class="bi bi-tags-fill fs-4"></i>
                         </div>
-
+    
                         <div>
                             <h4 class="fw-bold mb-1 text-dark">
                                 @if(esEdicion){
@@ -59,7 +49,7 @@
                                     Crear Categoría
                                 }
                             </h4>
-
+    
                             <p class="text-muted mb-0">
                                 @if(esEdicion){
                                     Modifica los datos de la categoría seleccionada.
@@ -68,63 +58,60 @@
                                 }
                             </p>
                         </div>
-
                     </div>
-
                 </div>
-
+    
                 <!-- FORM -->
                 <div class="card-body p-4 p-lg-5">
-
                     @if (form) {
-                        <form [formGroup]="form" (ngSubmit)="save()">
-                            <!-- NOMBRE -->
-                            <div class="mb-4">
-                                <label for="nombre" class="form-label fw-semibold text-dark">
-                                    Nombre de la categoría
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0">
-                                        <i class="bi bi-tag text-primary"></i>
-                                    </span>
-                                    <input id="nombre" type="text" placeholder="Ejemplo: Tecnología" 
-                                        class="form-control border-start-0 py-2" formControlName="nombre">
-                                </div>
+                    <form [formGroup]="form" (ngSubmit)="save()">
+                        <!-- NOMBRE -->
+                        <div class="mb-4">
+                            <label for="nombre" class="form-label fw-semibold text-dark">
+                                Nombre de la categoría
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-tag text-primary"></i>
+                                </span>
+                                <input id="nombre" type="text" placeholder="Ejemplo: Tecnología"
+                                    class="form-control border-start-0 py-2" formControlName="nombre">
                             </div>
-                            <!-- DESCRIPCIÓN -->
-                            <div class="mb-4">            
-                                <label for="descripcion" class="form-label fw-semibold text-dark">
-                                    Descripción
-                                </label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0 align-items-start pt-3">
-                                        <i class="bi bi-card-text text-primary"></i>
-                                    </span>
-                                    <textarea id="descripcion" rows="4" placeholder="Describe brevemente esta categoría..."
-                                        class="form-control border-start-0" formControlName="descripcion"></textarea>
-                                </div>
-                                <small class="text-muted">
-                                    La descripción ayuda a identificar mejor la categoría.
-                                </small>
+                        </div>
+                        <!-- DESCRIPCIÓN -->
+                        <div class="mb-4">
+                            <label for="descripcion" class="form-label fw-semibold text-dark">
+                                Descripción
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0 align-items-start pt-3">
+                                    <i class="bi bi-card-text text-primary"></i>
+                                </span>
+                                <textarea id="descripcion" rows="4" placeholder="Describe brevemente esta categoría..."
+                                    class="form-control border-start-0" formControlName="descripcion"></textarea>
                             </div>
-                            <!-- ACCIONES -->
-                            <div class="d-flex justify-content-end gap-2 mt-5">
-                                <button type="button" class="btn btn-light border rounded-pill px-4" routerLink="/">
-                                    <i class="bi bi-x-circle me-2"></i>
-                                    Cancelar
-                                </button>
-                                <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
-                                    <i class="bi bi-check-circle me-2"></i>
-                                    @if(esEdicion){
-                                        Actualizar Categoría
-                                    }@else{
-                                        Crear Categoría
-                                    }
-                                </button>
-                            </div>
-                        </form>
+                            <small class="text-muted">
+                                La descripción ayuda a identificar mejor la categoría.
+                            </small>
+                        </div>
+                        <!-- ACCIONES -->
+                        <div class="d-flex justify-content-end gap-2 mt-5">
+                            <button type="button" class="btn btn-light border rounded-pill px-4" routerLink="/">
+                                <i class="bi bi-x-circle me-2"></i>
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                                <i class="bi bi-check-circle me-2"></i>
+                                @if(esEdicion){
+                                Actualizar Categoría
+                                }@else{
+                                Crear Categoría
+                                }
+                            </button>
+                        </div>
+                    </form>
                     }
-
+    
                 </div>
 
             </div>

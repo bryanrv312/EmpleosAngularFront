@@ -2,24 +2,19 @@
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-
         <div>
             <h2 class="fw-bold mb-1 text-dark">
                 <i class="bi bi-briefcase-fill text-primary me-2"></i>
                 Vacantes
             </h2>
-
             <p class="text-muted mb-0">
                 Gestiona las vacantes disponibles del sistema.
             </p>
         </div>
-
-
         <button class="btn btn-primary shadow-sm px-4" routerLink="/newVacancy">
             <i class="bi bi-plus-circle me-2"></i>
             Nueva Vacante
         </button>
-
     </div>
 
     <!-- CARD -->
@@ -27,224 +22,141 @@
 
         <!-- TOP BAR -->
         <div class="card-header bg-white border-0 py-3 px-4">
-
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-
                 <div>
                     <h5 class="fw-semibold mb-0 text-dark">
                         Lista de Vacantes
                     </h5>
                 </div>
-
                 <div class="position-relative">
-
                     <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-
-                    <input
-                        type="text"
-                        class="form-control ps-5 rounded-3"
-                        placeholder="Buscar vacante..."
-                        style="width: 260px;"
-                    >
-
+                    <input type="text" class="form-control ps-5 rounded-3" placeholder="Buscar vacante..." style="width: 260px;">
                 </div>
-
             </div>
-
         </div>
 
         <!-- TABLE -->
         <div class="table-responsive">
-
             <table class="table align-middle table-hover mb-0">
-
                 <thead class="table-light">
-
                     <tr>
                         <th class="py-3 px-4 fw-semibold text-secondary">
                             ID
                         </th>
-
                         <th class="py-3 px-4 fw-semibold text-secondary">
                             Categoria
                         </th>
-
                         <th class="py-3 fw-semibold text-secondary">
                             Vacante
                         </th>
-
                         <th class="py-3 fw-semibold text-secondary">
                             fecha Pub.
                         </th>
-
                         <th class="py-3 fw-semibold text-secondary">
                             Estado
                         </th>
-
                         <th class="py-3 fw-semibold text-secondary">
                             Destacado
                         </th>
-
                         <th class="py-3 text-center fw-semibold text-secondary">
                             Operaciones
                         </th>
-
                     </tr>
-
                 </thead>
-
                 <tbody>
-
                     @for (vacancy of vacancyList; track vacancy.id) {
-
                         <tr class="border-top">
-
                             <!-- ID -->
                             <td class="px-4 fw-semibold text-dark">
                                 {{vacancy.id}}
                             </td>
-
                             <!-- CATEGORÍA -->
-                            <td>
-
+                            <td>                            
                                 <div class="d-flex align-items-center gap-2">
-
-                                    <div
-                                        class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center"
-                                        style="width: 40px; height: 40px;"
-                                    >
+                                    <div class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px;">
                                         <i class="bi bi-tag-fill"></i>
-                                    </div>
-
+                                    </div> 
                                     <div>
-
                                         <div class="fw-semibold text-dark">
-                                            {{vacancy.categoria.nombre}} 
+                                            {{vacancy.categoria.nombre}}
                                         </div>
-
                                         <small class="text-muted">
                                             Categoría activa
                                         </small>
-
                                     </div>
-
                                 </div>
-
                             </td>
-
                             <!-- VACANTE -->
                             <td>
-
                                 <div class="fw-semibold text-dark">
                                     {{vacancy.nombre}}
                                 </div>
-
                                 <small class="text-muted">
                                     {{vacancy.descripcion}}
                                 </small>
-
                             </td>
-
                             <!-- FECHA -->
                             <td class="text-muted">
                                 {{vacancy.fecha | date:'dd/MM/yyyy'}}
                             </td>
-
                             <!-- ESTADO -->
                             <td>
-
                                 <span class="badge rounded-pill text-bg-success px-3 py-2">
-                                    Activa
+                                    {{vacancy.estatus}}
                                 </span>
-
                             </td>
-
                             <!-- DESTACADO -->
                             <td>
-
                                 <span class="badge rounded-pill text-bg-warning px-3 py-2">
-                                    Sí
+                                    {{vacancy.destacado ? 'Sí' : 'No'}}
                                 </span>
-
                             </td>
-
                             <!-- OPERACIONES -->
                             <td>
-
                                 <div class="d-flex justify-content-center gap-2">
-
-                                    <button
-                                        class="btn btn-sm btn-outline-primary rounded-pill px-3"
-                                    >
-
+                                    <button class="btn btn-sm btn-outline-primary rounded-pill px-3" [routerLink]="[vacancy.id, 'editVacancy']">
                                         <i class="bi bi-pencil-square me-1"></i>
                                         Editar
-
                                     </button>
-
-                                    <button
-                                        class="btn btn-sm btn-outline-danger rounded-pill px-3"
-                                    >
-
+                                    <button class="btn btn-sm btn-outline-danger rounded-pill px-3">
                                         <i class="bi bi-trash3 me-1"></i>
                                         Eliminar
-
                                     </button>
-
                                 </div>
-
                             </td>
-
-                        </tr>
-                        
-                    }
+                        </tr>           
+                     }
                 </tbody>
-
             </table>
-
         </div>
-
         <!-- FOOTER -->
         <div class="card-footer bg-white border-0 py-3 px-4">
-
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-
                 <small class="text-muted">
                     Mostrando 1 vacante
                 </small>
-
                 <nav>
-
                     <ul class="pagination pagination-sm mb-0">
-
                         <li class="page-item disabled">
                             <a class="page-link rounded-start-pill">
                                 Anterior
                             </a>
                         </li>
-
                         <li class="page-item active">
                             <a class="page-link">1</a>
                         </li>
-
                         <li class="page-item">
                             <a class="page-link">2</a>
                         </li>
-
                         <li class="page-item">
                             <a class="page-link rounded-end-pill">
                                 Siguiente
                             </a>
                         </li>
-
                     </ul>
-
                 </nav>
-
             </div>
-
         </div>
-
     </div>
-
 </div>

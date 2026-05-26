@@ -20,6 +20,10 @@ export const routes: Routes = [
     {
         path: 'newVacancy',
         loadComponent: () => import('./vacancy-form/vacancy-form.component')
-    }
+    },
+    {
+        path: 'vacantes/:id/editVacancy',
+        loadComponent: () => import('./vacancy-form/vacancy-form.component')
+    },
 
 ];
