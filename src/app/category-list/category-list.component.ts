@@ -17,15 +17,13 @@ export default class CategoryListComponent implements OnInit {
   categoriesList: Category[] = []; //lista para almacenar categorias
 
   ngOnInit(): void {
-    this.categoryService.list()//este es el observable y me suscribo
-      .subscribe(categories =>{//categories viene de la API
-        this.categoriesList = categories;
-    });
+    this.loadAll();
   }
 
   loadAll(){
-    this.categoryService.list().subscribe(categories =>{
-      this.categoriesList = categories;
+    this.categoryService.list()//este es el observable y me suscribo
+      .subscribe(categories =>{//categories viene de la API
+        this.categoriesList = categories;
     });
   }
 

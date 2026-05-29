@@ -32,5 +32,9 @@ export class VacancyService {
     return this.http.put<Vacancy>(`http://localhost:8080/api/vacantes/${id}`, formData);
   }
 
+  delete(id: number){
+    return this.http.delete<void>(`http://localhost:8080/api/vacantes/${id}`);
+  }
+
 
 }

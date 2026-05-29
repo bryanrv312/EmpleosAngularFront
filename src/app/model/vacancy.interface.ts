@@ -1,7 +1,7 @@
 import { Category } from "./category.interface";
 
 export interface Vacancy {
-    id?: number;
+    id: number;
     nombre: string;
     descripcion: string;
     fecha: Date;

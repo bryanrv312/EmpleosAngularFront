@@ -18,10 +18,25 @@ export default class VacancyListComponent {
   vacancyList: Vacancy[] = [];
 
   ngOnInit(): void {
-    this.vacancyService.list()
-      .subscribe(vacanciesObs => {
-        this.vacancyList = vacanciesObs;
-      });
+    this.loadAll();
+  }
+
+    loadAll(){
+      this.vacancyService.list()
+        .subscribe(vacanciesObs => {
+          this.vacancyList = vacanciesObs;
+        });
+    }
+
+    deleteVacancy(vacancy: Vacancy){
+      const confirmar = window.confirm(`¿Seguro que deseas eliminar la vacante "${vacancy.nombre}"?`);
+      if (confirmar) {
+        this.vacancyService.delete(vacancy.id)
+          .subscribe(() => {
+            this.loadAll();
+        });
+      }
+      
     }
 
 }
